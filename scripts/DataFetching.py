@@ -34,17 +34,17 @@ print(inventory)
 
 
 # get data for a time
-t = UTCDateTime("2016-07-01T06:45:00.000")
+#t = UTCDateTime("2016-07-01T06:45:00.000")
+#
+#st = client.get_waveforms("OK", "NOKA", "*", "HHN,HHE,HHZ", t, t + 60 * 60)
+#
+#st.plot()
+#
+#st = client.get_waveforms("GS", "OK038", "*", "HHN,HHE,HHZ", t, t + 60 * 60)
+#
+#st = client.get_waveforms("GS", "OK029", "*", "HHN", t, t + 60 * 60)
 
-st = client.get_waveforms("OK", "NOKA", "*", "HHN,HHE,HHZ", t, t + 60 * 60)
-
+t = UTCDateTime("2018-04-09T10:00:00.000")
+st = client.get_waveforms("GS", "OK029", "*", "HH1", t, t + 24 * 60 * 60)
+st.write("example-1-day.slist", format="SLIST")
 st.plot()
-
-
-st = client.get_waveforms("GS", "OK038", "*", "HHN,HHE,HHZ", t, t + 60 * 60)
-
-st = client.get_waveforms("GS", "OK029", "*", "HHN", t, t + 60 * 60)
-
-st.plot()
-
-
