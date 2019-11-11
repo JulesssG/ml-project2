@@ -1,0 +1,51 @@
+Seismological stations around the world record 3 components particle motion  -  usually at 100Hz sampling rate.
+
+An earthquake (EQ) radiates elastic waves in the earth that are picked on these seismometers. "P" / compressional waves arrive first, "S" / shear second. Surface waves (Rayleigh/ love) are also recorded. 
+
+Typically, arrival of EQ waves will be picked at several stations  -  and then inversion of the travel time is performed to locate the EQ and estimate its magnitude. Picking the wave arrival at one station is thus routine  -  this is performed automatically by a number of algorithm (from simple thresholding, to more complex STA/SLA algorithms ) . Usually, after seismologist do QC and sometimes/always re-pick some arrivals "manually" (when more in the noise).
+Can ML help?  i.e. harvest more EQ (of smaller size , buried in noise ) 
+ML recent papers
+[T. Perol, M. Gharbi, and M. Denolle. Convolutional neural network for earthquake detection and location. Science Advances, 4(2):e1700578, 2018.]
+
+Kong, Q., Trugman, D. T., Ross, Z. E., Bianco, M. J., Meade, B. J., & Gerstoft, P. (2018). Machine learning in seismology: Turning data into insights. Seismological Research Letters, 90(1), 3-14.
+
+
+A general introduction /in  depth textbook on seismology
+S. Stein and M. Wysession. An introduction to seismology, earthquakes, and earth structure. John Wiley & Sons, 2009.
+P. M. Shearer. Introduction to seismology. Cambridge University Press, 2009.
+
+
+Note that EQ of multiple sizes occur  -  and obeys the Gutemberg-Richter law ,i.e. relation between Magnitude of an EQ and Occurrence.  (https://en.wikipedia.org/wiki/Gutenberg%E2%80%93Richter_law) 
+
+
+MicroEQ also occurs in the lab  -  same physics / different frequencies  -    we are in the process of finalizing our acquisition system for such passive recording.  -> we do not have a catalog yet -> hence we suggest to focus on seismological records following the approach developed in Perol et al. 
+
+Access to seismological data 
+
+Raw waveform of stations  -  mostly from fdsn.org  but also
+https://service.iris.edu/irisws/fedcatalog/1/
+http://www.orfeus-eu.org/data/eida/webservices/routing/ 
+https://www.ncedc.org/index.html 
+https://scedc.caltech.edu/ 
+which probably redirect to fdsn.org 
+Oklahoma:
+https://www.fdsn.org/networks/detail/GS/   ( this is the temp network - then focus on OK for more stations)
+https://www.fdsn.org/networks/detail/OK/ 
+
+SED  / CH network
+http://networks.seismo.ethz.ch/networks/ch/ 
+
+
+EQ catalog  (this is the classified data) 
+usgs
+https://earthquake.usgs.gov/earthquakes/search/ 
+international big ones
+http://www.isc.ac.uk/iscgem/overview.php
+north cal
+https://www.ncedc.org/index.html 
+south cal
+https://scedc.caltech.edu/ 
+Oklahoma 
+http://www.ou.edu/ogs/research/earthquakes/catalogs  
+
+
