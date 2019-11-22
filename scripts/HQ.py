@@ -6,11 +6,11 @@ end_time_hq = start_time_hq + 2 * 60
 
 st_hq = read("../processed-data/example-1-day.slist", format="SLIST", starttime=start_time_hq, endtime=end_time_hq)
 
-print(type(st_hq.differentiate()))
-print(st_hq.differentiate())
-diff = st_hq.differentiate()
+#print(type(st_hq.differentiate()))
+#print(st_hq.differentiate())
+#diff = st_hq.differentiate()
 
-diff.plot()
+st_hq.plot()
 
 #st = st_hq + diff
 
