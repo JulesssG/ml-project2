@@ -1,13 +1,3 @@
-#
-# This file is part of OK.
-#
-# Created by Brice Lecampion on 06.11.19.
-# Copyright (c) ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE, Switzerland, Geo-Energy Laboratory, 2016-2019.  All rights reserved.
-# See the LICENSE.TXT file for more details. 
-#
-
-
-
 from obspy.clients.fdsn import Client
 
 from obspy import UTCDateTime
