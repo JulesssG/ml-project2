@@ -6,7 +6,7 @@ client = Client("IRIS")
 from obspy.clients.fdsn.header import URL_MAPPINGS
 
 
-startTime = UTCDateTime("2018-04-09T21:26:00.000")
+startTime = UTCDateTime("2018-04-11T00:21:00.000")
 endTime = startTime + 2 * 60
 
 st = client.get_waveforms("GS", "OK029", "*", "HH1", startTime, endTime)
