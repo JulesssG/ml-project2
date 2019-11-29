@@ -44,7 +44,7 @@ print(inventory)
 #
 #st = client.get_waveforms("GS", "OK029", "*", "HHN", t, t + 60 * 60)
 
-t = UTCDateTime("2018-04-09T10:00:00.000")
-st = client.get_waveforms("GS", "OK029", "*", "HH1", t, t + 24 * 60 * 60)
-st.write("example-1-day.slist", format="SLIST")
+t = UTCDateTime("2018-04-11T23:37:08.000")
+st = client.get_waveforms("GS", "OK029", "*", "HH1", t, t + 2)
+#st.write("example-1-day.slist", format="SLIST")
 st.plot()
