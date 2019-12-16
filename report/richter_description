@@ -1,0 +1,11 @@
+Richter magnitude 	Description 	Earthquake effect
+< 2.0 							Micro 				Micro earthquakes, not felt.
+2.0-2.9 						Minor 				Generally not felt, but recorded.
+3.0-3.9 													Often felt, but rarely causes damage.
+4.0-4.9 						Light 				Noticeable shaking of indoor items, rattling noises. Significant damage unlikely.
+5.0-5.9 						Moderate 			Can cause major damage to poorly constructed buildings over small regions. At most slight damage to well-designed buildings.
+6.0-6.9 						Strong 				Can be destructive in areas up to about 160 kilometres (100 mi) across in populated areas.
+7.0-7.9 						Major 				Can cause serious damage over larger areas.
+8.0-8.9 						Great 				Can cause serious damage in areas several hundred miles across.
+9.0-9.9 						Devastating 	in areas several thousand miles across.
+10.0+ 							Epic 					Never recorded
