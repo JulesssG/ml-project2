@@ -18,18 +18,16 @@ def get_location(network, station, channel):
     return latitude, longitude, elevation
 
 
-a = 6378137  # Earth radius equator
-b = 6356752.314245  # Earth radius poles
-
-
-def N(lat):
-    return a ** 2 / sqrt(a ** 2 * cos(lat) ** 2 + b ** 2 * sin(lat) ** 2)
-
-
 def geographic_to_ECEF(lat, lon, h):
-    x = (N(lat) + h) * cos(lat) * cos(lon)
-    y = (N(lat) + h) * cos(lat) * sin(lon)
-    z = (b ** 2 / a ** 2 * N(lat) + h) * sin(lat)
+    a = 6378137  # Earth radius equator
+    e_2 = 0.00669437999 # Eccentricity of ellipsoid (WGS-84)
+    b = a * sqrt(1-e_2)
+    
+    R = a/sqrt(1 - e_2 * sin(lat)**2)
+
+    x = (R + h) * cos(lat) * cos(lon)
+    y = (R + h) * cos(lat) * sin(lon)
+    z = (R + h - e_2 * R) * sin(lat)
 
     return x, y, z
 
