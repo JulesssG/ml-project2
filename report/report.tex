@@ -109,11 +109,62 @@ For the next ones, let's take an example to see what characterise an earthquake:
 - Transition to fourier and presentation of those features
 
 \section{Model Selection}
-We opted for KNN and RandomForest and describe here our approach with both of them. The problem is that we either tend to have a good precision but low recall or vice-versa, so as shown on the plot below the best F-score we get for both algorithms is quite low. Our training set comprises approximately five months of time windows with $0.45\%$ of earthquakes (the majority being small ones), whereas the test is about one month with $0.46\%$ of earthquakes. There are a few parameters that we tweak in order to get better results. Concerning KNN there are two parameters, we change the number of neighbours and we try to compensate the imbalance of the classes by duplicating the earthquake datapoints. Regarding the RandomForest there are three parameters that have a positive influence on our model: the depth of the tree, the number of trees and the weighting of the classes.
+We opted for KNN and RandomForest and describe here our approach with both of them. The problem is that we either tend to have a good precision but low recall or vice-versa, so as shown on the plot below the best F-score we get for both algorithms is quite low. Our training set comprises approximately five months of time windows with $0.45\%$ of earthquakes (the majority being small ones), whereas the test is about one month with $0.46\%$ of earthquakes. It represents $861$ earthquakes for the training set and $214$ for the test set. There are a few parameters that we tweak in order to get better results. Concerning KNN there are two parameters, we change the number of neighbours and we try to compensate the imbalance of the classes by duplicating the earthquake datapoints. Regarding the RandomForest there are three parameters that have a positive influence on our model: the depth of the tree, the number of trees and the weighting of the classes. 
 
-TABLE WITH SCORES
+\begin{center}
+ \begin{tabular}{||c c c||} 
+ \hline
+ Measure & Random Forest & KNN \\ [0.5ex] 
+ \hline\hline
+ Accuracy & 0.97 & 0.99 \\ 
+ \hline
+ Precision & 0.06 & 0.098 \\
+ \hline
+ Recall & 0.38 & 0.08 \\
+ \hline
+ F1-score & 0.1 & 0.08 \\ [1ex]
+ \hline
+\end{tabular}
+\end{center}
 
-Since little earthquakes do not seem to really trigger our features, we try to simplify our model taking only earthquakes that have at least 3 of magnitude.
+Since little earthquakes do not seem to really trigger our features, we try to simplify our model taking only earthquakes that have at least 2 of magnitude. Here it represents $614$ earthquake for the training set and $138$ for the test set. 
+
+\begin{center}
+ \begin{tabular}{||c c||} 
+ \hline
+ Measure & Random Forest \\ [0.5ex] 
+ \hline\hline
+ Accuracy & 0.99 \\ 
+ \hline
+ Precision & 0.23 \\
+ \hline
+ Recall & 0.25 \\
+ \hline
+ F1-score & 0.24 \\ [1ex]
+ \hline
+\end{tabular}
+\end{center}
+
+We see that we get a far better results. So we lost a few earthquakes but really improved our score. Let's see if we can improve it even more taking earthquakes that have at least three of magnitude. Here the training set contains $57$ earthquakes and the test set $6$ of them.
+
+\begin{center}
+ \begin{tabular}{||c c||} 
+ \hline
+ Measure & Random Forest \\ [0.5ex] 
+ \hline\hline
+ Accuracy & 1 \\ 
+ \hline
+ Precision & 1 \\
+ \hline
+ Recall & 0.33 \\
+ \hline
+ F1-score & 0.5 \\ [1ex]
+ \hline
+\end{tabular}
+\end{center}
+
+The F1-score we get is even better than last time, but our recall is still quite low. We see than the magnitude requirement seems to simplify our model enough so that we can almost get a reasonable score. The problem is that the trade-off with the number of earthquakes in our test and training set is really present. Indeed, there are only a few earthquakes left and thus the variance of the result is higher. Indeed, the results we show here represent the best we can get and the higher the magnitude the less the number of earthquakes and thus the higher the variance of the F1-score we get. In order to have a high recall, we can make the weights bigger but the problem is that we get a very low precision in that case.
+
 
 \section{Conclusion}
 That project did not seem hard at first, but we went through many difficulties. First, we had to manually solve the location dependency which is imprecise given that the speed of propagation is variable. Secondly, earthquakes in our data do not always trigger features we expect to characterise them since signals from stations are very noisy. Additionally, automatically splitting the original time series yields chunks that can be mislabled because we only know the start of a seism and since our dataset has a strong uneven proportion of earthquake time windows compared to noisy ones, things can quickly go awry. Then, the feature engineering was not trivial and it took a great amount of time to come up with good approaches that capture the essence of earthquakes.\newline
