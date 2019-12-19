@@ -20,7 +20,7 @@ We get our data using the ObsPy library \cite{obspy}. ObsPy grants us access to 
 
 \begin{figure}[h]
   \centering
-	\includegraphics[width=\columnwidth]{10min-example-2018-06-30T17:50.png}
+	\includegraphics[width=\columnwidth]{10min-example-2018-06-30T17:50_1.png}
   \caption{10 minute of data example, no earthquake}
 	\label{fig:10min-example}
 \end{figure}
@@ -68,7 +68,15 @@ We first have to correct the anomalies in the data: the delay induced by the phy
 First of all, for the missing data, we take care of that when loading it. Whenever a time serie has is missing a chunk of its curve, we interpolate it with gaussian noise. This way, it will just be considered as a moment where nothing interesting happened and thus should not worsen the performance as it is quite representative to most of the dataset where no earthquake has happened.
 
 Moreover, as aformentioned, the station we choose records activity and label it with the current time which does not correspond to the exact time at which the earthquake happened according to the catalog we use. Therefore we convert latitude, longitude and elevation to a cartesian coordinate system in order to compute the distance easily. We do this using ECEF coordinates\cite{ECEFPaper}\\
-Now that we have the distance, we manually find the start time of some earthquake and see the time difference. With a few time differences and distances we computed the average speed of propagation of earthquake/p-waves and got $5676.611\frac{m}{s}$ which is very close to what they found in \cite{PWavePaper}. We use that measure in order to automatically label the data.
+Now that we have the distance, we manually find the start time of some earthquake and see the time difference. With a few time differences and distances we computed the average speed of propagation of earthquake/p-waves and got $5676.611\frac{m}{s}$ which is very close to what they found in \cite{PWavePaper}. We use that measure in order to automatically label the data. We show an example of the delay we add in figure \ref{fig:timediff}. Here, and it is not the furthest earthquake, the delay is already of $10$ seconds which is significant for a time window a one minute.
+
+\begin{figure}[h]
+  \centering
+	\includegraphics[width=\columnwidth]{time-diff.png}
+  \caption{Delay of catalog in green, re-calibrated in red}
+	\label{fig:timediff}
+\end{figure}
+
 
 \section{Labeling of the Data}
 \label{section:labeling}
@@ -90,9 +98,9 @@ There are a few characteristics inherent to earthquakes that we try to capture t
 	\item{Standard deviation of the signal}
 	\item{Maximum and minimum of the signal}
 	\item{Maximum difference between two adjacent points}
-	\item{Maximum and minimum of the shifted signal, shift meaning the we substract the mean}
-	\item{Number of points that are above half of the max, which corresponds to the number of points with high values}
-	\item{Number of points that are below half of the minimum, which corresponds to the number of points with low values}
+	\item{Maximum and minimum of the shifted signal, shifted meaning the we substract the mean}
+	\item{Number of points that are above half of the maximum of the shifted signal, which corresponds to the number of points with high values}
+	\item{Number of points that are below half of the minimum of the shifted signal, which corresponds to the number of points with low values}
 \end{itemize}
 
 Those features are very simple and may not add much information useful to the model. However we think that the information they add is still positive for what we want to model, the standard deviation, the maximums and the minimums informs us about how variable and powerful is the signal. Earthquakes tends to span much more amplitude and be more unpredictable, hence the standard deviation. The last two features could be useful to prevent false positive.. Indeed, if a noise jump to some high amplitude, it will most likely not have a lot of values extreme values. Hence, if a period containing noise span a lot of amplitude, those measures can help counter this.\\
