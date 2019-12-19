@@ -5,6 +5,9 @@ from math import cos, sin, sqrt, radians
 
 
 def get_location(network, station, channel):
+    """
+    Used to get the geographic location of a station
+    """
     client = Client("IRIS")
 
     inventory = client.get_stations(network="GS", station="OK029", channel="HH1")
@@ -19,10 +22,14 @@ def get_location(network, station, channel):
 
 
 def geographic_to_ECEF(lat, lon, h):
+    """
+    Used to compute the distance between an earthquake
+    and the location of a station.
+    """
     a = 6378137  # Earth radius equator
     e_2 = 0.00669437999 # Eccentricity of ellipsoid (WGS-84)
     b = a * sqrt(1-e_2)
-    
+
     R = a/sqrt(1 - e_2 * sin(lat)**2)
 
     x = (R + h) * cos(lat) * cos(lon)
