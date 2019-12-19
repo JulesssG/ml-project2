@@ -24,7 +24,7 @@ def get_location(network, station, channel):
 def geographic_to_ECEF(lat, lon, h):
     """
     Used to compute the distance between an earthquake
-    and the location of a station.
+    and the location of a station
     """
     a = 6378137  # Earth radius equator
     e_2 = 0.00669437999 # Eccentricity of ellipsoid (WGS-84)
@@ -40,6 +40,9 @@ def geographic_to_ECEF(lat, lon, h):
 
 
 def compute_distance(lat1, lon1, h1, lat2, lon2, h2):
+    """
+    Compute the euclidian distance between two geographic locations
+    """
     x1, y1, z1 = geographic_to_ECEF(radians(lat1), radians(lon1), h1)
     x2, y2, z2 = geographic_to_ECEF(radians(lat2), radians(lon2), h2)
 
