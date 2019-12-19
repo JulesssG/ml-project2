@@ -120,17 +120,17 @@ Thus, after all the pre-processing and feature engineering we did not have that 
 
 
 \section{Further improvements}
-There are a few things that we could improve in order to have a better model. The first one is simply better features. Indeed, with better knowledge in geology and more precisely seismic waves, one could come up with features that captures more how earthquakes behave in a signal. Secondly, one could try to come up with a better way to choose time windows that could try to take into account where a seism starts so that it does includes at least a certain percentage of what comes after. Then, in order to have more diversity in our dataset, we could have made use of more than one station.
+There are a few things that we could improve in order to have a better model. The first one is simply better features. Indeed, with better knowledge in geology and more precisely seismic waves, one could come up with features that captures more how earthquakes behave in a signal. Secondly, one could try to come up with a better way to choose time windows that could try to take into account when a seism starts so that it does includes at least a certain percentage of what comes after. Then, in order to have more diversity in our dataset, we could have made use of more than one station; it maybe could have helped with some anomalies that may occur on stations. The more stations we take the less likey we are that they suffer from the same anomalies at the same time; however this greatly increases data size. Detecting low-magnitude earthquakes is a very difficult task, even for experts, but there aren't enough high-magnitude earthquakes to teach the model anything. Indeed, Oklahoma doesn't have a lot of noticeable earthquakes, thus choosing another location could have helped to have a model that is able to detech big earthquakes. To better clean the data we could have also computed the p-wave speed in a more involved manner; we could have for example used ground stucture data to better approximate the speed. This could have helped since for the majority of earthquakes our greedy approach works very well but some earthquakes's times are still not perfect.
 
 - Better features, signals, seismology\\ done
 - Undersampling\\
 - Oversampling\\
-- More robust way to compute speed of P-waves, for example compute average speed in each different direction or get ground information to have a better idea of how fast p-waves will go through the ground\\
+- More robust way to compute speed of P-waves, for example compute average speed in each different direction or get ground information to have a better idea of how fast p-waves will go through the ground\\ done
 - Finding a better way to decide if a time-window has an earthquake or not\\ sort of done
 - Multiple stations\\ done
 - Better way to choose time window?\\ done
 - Better knowledge of deep nets or random forests
-- Try another place with more earthquake as we focus on notiecable earthquake and those are rare in oklahoma
+- Try another place with more earthquake as we focus on notiecable earthquake and those are rare in oklahoma done
 
 \begin{thebibliography}{9}
 \bibitem{ConvNetPaper}
