@@ -61,7 +61,7 @@ The problem with this approach is illustrated in figure \ref{fig:problem-discret
 \section{Feature Creation}
 From that seismic waves we have to choose what processing and transformations will have to be done to be able to feed the machine learning algorithm. We have two main options: leave it as it is and opt for an algorithm such as convolutional neural networks, the approach they took in ConvNetQuake (the paper \cite{ConvNetPaper} that inspired this project), or perform some feature engineering by hand to be able to use some more standard algorithm, which is the approach we chose. So, rather than having a gigantic input dimension we choose to compress it in a smart way, creating meaningful features for the algorithm. For instance, if we took a time window of $10$ seconds, this compression is on the order of $100$ if we create ten features. This permits to accelerate the training process and thus allow to span more time or take more channel.\newline
 
-There are a few characteristics inherent to earthquake that we try to capture through our features: they have high frequencies, high amplitudes, quick acceleration but rather slow decrease and a lot of different frequencies. We begin by adding simple measures that directly come to mind: the standard deviation, the maximum and minimum amplitude \textbf{ask lucien}. For the next ones, let's take an example to see what characterise an earthquake:\newline
+There are a few characteristics inherent to earthquakes that we try to capture through our features: they have high frequencies, high amplitudes, quick acceleration but rather slow decrease and a lot of different frequencies. We begin by adding simple measures that directly come to mind: the standard deviation, the maximum and minimum amplitude \textbf{ask lucien}. For the next ones, let's take an example to see what characterise an earthquake:\newline
 - Examples and presentation of the two first features
 - Transition to fourier and presentation of those features
 
@@ -72,6 +72,9 @@ There are a few characteristics inherent to earthquake that we try to capture th
 - Still difficult\\
 
 \section{Conclusion}
+That project did not seem hard at first, but we went through many difficulties. First, due to the location dependency and missing values in the signal which we had to manually solve, since ObsPy does not provide a solution. Secondly, because of the fact that earthquakes in our data do not always trigger features that we expect since signals from stations are sometimes very noisy. Additionally, automatically splitting the original time serie yields chunks that can be mislabled because we only know the start of a seism and since our dataset has a strong uneven proportion of earthquake time windows compared to noisy ones, things can quickly go awry. Then, the feature engineering was not trivial and it took some time to come up with good approaches that capture the essence of earthquakes.\newline
+Thus, after all the pre-processing and feature engineering we did not have that much time left to devote to the training and model choosing. And at this time, it seemed that we did not manage to train a good model for the following reasons: our features did not activate perfectly, our labels were hugely imbalanced and some windows were mislabled due to the time window problems. The features did not activate properly on small hearthquakes, so we decided to focus on those whose magnitude is more than $3.5$ on the Ricther scale.\newline
+
 
 \section{Further improvements}
 - Better features, signals, seismology\\
