@@ -73,17 +73,19 @@ There are a few characteristics inherent to earthquakes that we try to capture t
 
 \section{Conclusion}
 That project did not seem hard at first, but we went through many difficulties. First, due to the location dependency and missing values in the signal which we had to manually solve, since ObsPy does not provide a solution. Secondly, because of the fact that earthquakes in our data do not always trigger features that we expect since signals from stations are sometimes very noisy. Additionally, automatically splitting the original time serie yields chunks that can be mislabled because we only know the start of a seism and since our dataset has a strong uneven proportion of earthquake time windows compared to noisy ones, things can quickly go awry. Then, the feature engineering was not trivial and it took some time to come up with good approaches that capture the essence of earthquakes.\newline
-Thus, after all the pre-processing and feature engineering we did not have that much time left to devote to the training and model choosing. And at this time, it seemed that we did not manage to train a good model for the following reasons: our features did not activate perfectly, our labels were hugely imbalanced and some windows were mislabled due to the time window problems. The features did not activate properly on small hearthquakes, so we decided to focus on those whose magnitude is more than $3.5$ on the Ricther scale.\newline
+Thus, after all the pre-processing and feature engineering we did not have that much time left to devote to the training and model choosing we did not manage to train a good model for the following reasons: our features did not activate perfectly, our labels were hugely imbalanced and some windows were mislabled due to the time window problems. Our first goal was to train a model that detects any earthquake whatever their magnitude. However, small earthquakes did not activate our features enough, partly because of the noise, so we decided to focus on those whose magnitude is more than $3.5$ on the Ricther scale. Given the imbalanceness of the two classes we focused on a high recall finish bob when results \newline
 
 
 \section{Further improvements}
-- Better features, signals, seismology\\
+There are a few things that we could improve in order to have a better model. The first one is simply better features. Indeed, with better knowledge in geology and more precisely seismic waves, one could come up with features that captures more how earthquakes behave in a signal. Secondly, one could try to come up with a better way to choose time windows that could try to take into account where a seism starts so that it does includes at least a certain percentage of what comes after. Then, in order to have more diversity in our dataset, we could have made use of more than one station.
+
+- Better features, signals, seismology\\ done 
 - Undersampling\\
 - Oversampling\\
 - More robust way to compute speed of P-waves, for example compute average speed in each different direction or get ground information to have a better idea of how fast p-waves will go through the ground\\
-- Finding a better way to decide if a time-window has an earthquake or not\\
-- Multiple stations\\
-- Better way to choose time window?\\
+- Finding a better way to decide if a time-window has an earthquake or not\\ sort of done
+- Multiple stations\\ done
+- Better way to choose time window?\\ done
 - Better knowledge of deep nets or random forests
 - Try another place with more earthquake as we focus on notiecable earthquake and those are rare in oklahoma
 
